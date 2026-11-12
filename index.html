@@ -235,7 +235,14 @@ button:hover {
     text-align: right;
     margin-top: 30px;
     font-style: italic;
+    line-height: 1.8;
     color: #a16e77;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.signature.show {
+    opacity: 1;
 }
 
 /* FLOATING HEARTS */
@@ -297,12 +304,10 @@ button:hover {
         </p>
 
         <div class="envelope-area">
-
             <div class="envelope" id="envelope">
                 <div class="flap"></div>
                 <div class="seal">♡</div>
             </div>
-
         </div>
 
         <form id="nameForm">
@@ -344,10 +349,10 @@ button:hover {
             The music didn't start? Tap here to play ♫
         </div>
 
-        <div class="signature">
-    with a grateful heart,<br>
-    bryan ♡
-</div>
+        <div class="signature" id="signature">
+            with a grateful heart,<br>
+            bryan ♡
+        </div>
 
     </div>
 
@@ -368,7 +373,7 @@ button:hover {
 
 // COMPLETE CONFESSION
 
-const confession = `hiii sayy, naa unta koy gusto isulti nimo nga dugay na gyud nako gusto i share, pero wala lang gyud ko nakakita og sakto nga time ug courage para isulti ni. since elementary pa ta, naa na gyud koy feelings para nimo. sauna, wala ra nako gi mind kay abi nako simple crush ra ni nga mawala ra kadugayan. pero as time passed, na realize nako nga wala diay siya nawala. daghan na ang nausab since then, ug dili na pud ta parehas ka close sauna, pero naa gihapon akong feelings para nimo. if ever naka notice ka nga usahay murag wala tika tagda or maglikay ko nimo, i'm really sorry about that. dili gyud to tungod kay dili ko ganahan makig istorya nimo or wala koy gana makig interact nimo. usahay ma awkward lang gyud ko kay dili ko kabalo unsaon pag act around you, especially knowing nga naa koy feelings para nimo. i hope wala nimo na misunderstood akong actions sauna. i also want to thank you sa mga little things nga imong gibuhat para nako. especially sa mga times nga gina librehan ko nimo and sa mga moments nga magkauban ta. basin simple ra to para nimo, pero i really appreciate those things more than you think. honestly, dugay na kaayo ni nako gusto isulti, pero karon pa gyud ko nakakuha og courage. i'm not telling you this because naa koy gi expect nga mahitabo between us. dili pud ko nangayo og answer or expecting you to feel the same way. gusto lang gyud nako nga ma express akong feelings nga dugay na nako gitago. i hope nga dili ka ma pressure after nimo mabasa ni, and i hope nga dili pud ni mahimong reason para ma awkward ta sa usag usa. i still value our friendship, and i don't want you to feel nga kinahanglan naay mausab tungod lang kay ni open up ko nimo. i don't know if you ever noticed how special you are to me, but i hope you know that i genuinely appreciate having you in my life. i never regretted meeting you, and even though time has changed a lot of things between us, i'm still glad that we got to share those memories together. i want you to know that i see every version of you. the happy one, the quiet one, the strong one, and even the versions of yourself that you don't always show to other people. you don't have to be the same person every day for you to be appreciated. no matter how much you change or grow, i'll always be glad that i got to know different sides of you. and i hope you never feel like you have to hide any part of yourself just to be appreciated. whatever happens, i'm still happy nga naka ila ila ko nimo. you've been important to me for a long time, and i just wanted you to know how much i appreciate you. and lastly, i'm genuinely grateful that i have a best friend like you. i'm grateful that i got a front row seat to your life, to your growth, and to all the little moments that make you who you are. getting to know you and being part of some of your memories is something i'll always appreciate. i'm really glad that life gave me the chance to know you and call you my best friend. that's all. i just wanted to be honest with you, finally. also, i hope nga this stays between us lang. personal ni para nako, and i would really appreciate it if dili na nato i share sa uban. gusto lang nako nga kita ra duha ang makahibalo ani.`;
+const confession = `hiii sayyyy, naa unta koy gusto isulti nimo nga dugayyyy na gyud nako gusto i-share, pero wala lang gyud ko nakakita og sakto nga time ug courage para isulti ni. since elementary pa ta, i've had feelings for you. sauna, abi nako simple crush ra ni nga mawala ra kadugayan, pero as time passed, i realized nga wala diay siya nawala. daghan na kaayog nausab over the years, and we're not as close as we used to be, pero naa gihapon akong feelings para nimo. i know we have our own lives now, our own responsibilities, and we're slowly growing into different versions of ourselves, but that doesn't change how much i appreciate having you in my life. if ever naka-notice ka nga usahay murag wala tika tagda or maglikay ko nimo, i'm really sorry about that. dili gyud to tungod kay dili ko ganahan makig-istorya nimo. usahay ma-awkward lang gyud ko kay dili ko kabalo unsaon pag-act around you, especially knowing nga naa koy feelings para nimo. there were times nga gusto unta ko makig-istorya nimo, pero wala ko kabalo unsay isulti. i hope wala nimo na-misunderstood akong actions sauna. i also want to thank you for the little things you've done for me, especially sa mga times nga gina-librehan ko nimo and sa mga moments nga magkauban ta. basin simple ra to para nimo, but those little things mean more to me than you probably realize. there are moments nga basin nalimtan na nimo, pero ako, i still remember them. sometimes, the simplest moments become the memories we appreciate the most. honestly, dugay na kaayo ni nako gusto isulti, pero karon pa gyud ko nakakuha og courage. i'm not telling you this because i'm expecting something in return. dili pud ko nangayo nga you should feel the same way or give me an answer right away. gusto lang gyud nako nga ma-express akong feelings nga dugay na nako gitago. i hope nga dili ka ma-pressure after nimo mabasa ni, and i hope nga dili pud ni mahimong reason para ma-awkward ta sa usag usa. i still value our friendship, and i don't want you to feel nga kinahanglan naay mausab tungod lang kay ni-open up ko nimo. if you don't feel the same way, that's okay. i'll respect your feelings, and i understand if you need time or space. i want you to know that i see every version of you. the happy one, the quiet one, the strong one, and even the versions of yourself that you don't always show to other people. you don't have to be the same person every day just to be appreciated. you don't have to be perfect or pretend to be someone else. whatever version of yourself you become, i'm glad i got the chance to know you. i never regretted meeting you, and even though time has changed a lot of things between us, i'm still thankful for all the memories we've shared. and lastly, i'm genuinely grateful that i have a best friend like you. i'm grateful that i got a front row seat to your life, your growth, and all the little moments that make you who you are. getting to know you and being part of some of your memories is something i'll always appreciate. maybe someday we'll look back at these years and realize how much we've grown, but no matter where life takes us, i'll always be thankful that our paths crossed and that i got the chance to call you my best friend. whatever happens after this, i hope you know that i genuinely appreciate you. that's all. i just wanted to be honest with you, finally. also, i hope nga this stays between us lang. personal kaayo ni para nako, and it would really mean a lot to me if kita ra unta ang makahibalo ani. ♡`;
 
 
 // ELEMENTS
@@ -379,6 +384,7 @@ const error = document.getElementById("error");
 const envelope = document.getElementById("envelope");
 const music = document.getElementById("music");
 const fallback = document.getElementById("musicFallback");
+const signature = document.getElementById("signature");
 
 
 // OPEN LETTER
@@ -399,15 +405,11 @@ form.addEventListener("submit", function(e) {
 
     error.textContent = "";
 
-    // PLAY MUSIC
-
     music.volume = 0.45;
 
     music.play().catch(() => {
         fallback.style.display = "block";
     });
-
-    // ENVELOPE ANIMATION
 
     envelope.classList.add("open");
 
@@ -456,6 +458,10 @@ function startTyping() {
 
             setTimeout(type, 22);
 
+        } else {
+
+            signature.classList.add("show");
+
         }
 
     }
@@ -501,9 +507,7 @@ function createHeart() {
     document.body.appendChild(heart);
 
     setTimeout(() => {
-
         heart.remove();
-
     }, 7000);
 
 }
