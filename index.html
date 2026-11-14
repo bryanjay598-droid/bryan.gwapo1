@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,24 +124,7 @@ h1 {
     opacity: 0;
 }
 
-/* INPUT */
-
-input {
-    width: 85%;
-    padding: 13px;
-    border: none;
-    border-bottom: 1px solid #c69b9b;
-    background: transparent;
-    text-align: center;
-    outline: none;
-    font-family: Georgia, serif;
-    font-size: 16px;
-    color: #654b4b;
-}
-
-input::placeholder {
-    color: #b28e8c;
-}
+/* BUTTON */
 
 button {
     margin-top: 25px;
@@ -160,10 +144,9 @@ button:hover {
     transform: translateY(-2px);
 }
 
-#error {
-    color: #a14e5c;
-    font-size: 13px;
-    margin-top: 15px;
+button:disabled {
+    opacity: .7;
+    cursor: default;
 }
 
 /* LETTER */
@@ -198,15 +181,16 @@ button:hover {
 }
 
 .letter-title {
-    text-align: center;
-    font-size: 25px;
+    text-align: left;
+    font-size: 27px;
     font-weight: normal;
+    font-style: italic;
     color: #986b70;
     margin-bottom: 8px;
 }
 
 .date-text {
-    text-align: center;
+    text-align: left;
     font-size: 11px;
     letter-spacing: 2px;
     color: #b28e8c;
@@ -310,23 +294,9 @@ button:hover {
             </div>
         </div>
 
-        <form id="nameForm">
-
-            <input
-                type="text"
-                id="nameInput"
-                placeholder="Write your name..."
-                autocomplete="off"
-                required
-            >
-
-            <br>
-
-            <button type="submit">Open Letter ♡</button>
-
-        </form>
-
-        <p id="error"></p>
+        <button type="button" id="openButton">
+            Open Letter ♡
+        </button>
 
     </div>
 
@@ -339,9 +309,11 @@ button:hover {
 
     <div class="paper" id="paper">
 
-        <h2 class="letter-title">A Letter For You</h2>
+        <h2 class="letter-title">Dear Zaira,</h2>
 
-        <div class="date-text">FROM THE HEART ♡</div>
+        <div class="date-text">
+            A LITTLE LETTER FROM MY HEART ♡
+        </div>
 
         <div id="letterText"></div>
 
@@ -378,9 +350,7 @@ const confession = `hiii sayyyy, naa unta koy gusto isulti nimo nga dugayyyy na 
 
 // ELEMENTS
 
-const form = document.getElementById("nameForm");
-const input = document.getElementById("nameInput");
-const error = document.getElementById("error");
+const openButton = document.getElementById("openButton");
 const envelope = document.getElementById("envelope");
 const music = document.getElementById("music");
 const fallback = document.getElementById("musicFallback");
@@ -389,21 +359,9 @@ const signature = document.getElementById("signature");
 
 // OPEN LETTER
 
-form.addEventListener("submit", function(e) {
+openButton.addEventListener("click", function() {
 
-    e.preventDefault();
-
-    const name = input.value.trim().toLowerCase();
-
-    if (name !== "zaira") {
-
-        error.textContent =
-            "Hmm, this letter isn't for you. Try again ♡";
-
-        return;
-    }
-
-    error.textContent = "";
+    openButton.disabled = true;
 
     music.volume = 0.45;
 
