@@ -15,257 +15,231 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: Georgia, serif;
-    background: linear-gradient(135deg, #f8eee8, #efd9d5, #f7e8df);
-    color: #654b4b;
+    background: linear-gradient(135deg, #f8e8e5, #f4d9d5, #f8eee5);
+    color: #684b4b;
     overflow-x: hidden;
 }
 
 .screen {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 25px;
+    justify-content: center;
+    padding: 25px 15px;
 }
 
-.card {
-    width: 100%;
-    max-width: 430px;
+.hidden {
+    display: none !important;
+}
+
+.envelope-container {
     text-align: center;
-    padding: 30px 20px;
+    width: 100%;
+    max-width: 400px;
     animation: fadeIn 1.2s ease;
 }
 
-.small-text {
+.small-title {
     font-size: 12px;
-    letter-spacing: 3px;
-    color: #a77b7b;
-    text-transform: uppercase;
-}
-
-h1 {
-    font-weight: normal;
-    font-size: 29px;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 14px;
-    color: #987b78;
+    letter-spacing: 4px;
+    color: #a77b78;
     margin-bottom: 35px;
 }
 
-/* ENVELOPE */
-
-.envelope-area {
-    position: relative;
-    width: 230px;
-    height: 155px;
-    margin: 45px auto 35px;
-    perspective: 800px;
-}
-
 .envelope {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #d9aeb0;
+    position: relative;
+    width: 280px;
+    height: 180px;
+    background: #d9aaa5;
+    margin: 0 auto 35px;
     border-radius: 5px;
-    box-shadow: 0 12px 25px #9b777744;
+    box-shadow: 0 12px 30px #9c777755;
 }
 
 .envelope::before {
     content: "";
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    border-left: 115px solid transparent;
-    border-right: 115px solid transparent;
-    border-bottom: 90px solid #c99097;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 105px solid #c88f8b;
+    transform-origin: top;
+    transition: transform 0.8s ease;
     z-index: 3;
 }
 
-.flap {
+.envelope::after {
+    content: "♡";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 115px solid transparent;
-    border-right: 115px solid transparent;
-    border-top: 85px solid #e7c1c0;
-    transform-origin: top;
-    transition: transform 1s ease;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff4ef;
+    font-size: 38px;
     z-index: 4;
 }
 
-.seal {
-    position: absolute;
-    top: 65px;
-    left: 95px;
-    width: 40px;
-    height: 40px;
-    background: #a96770;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff4ed;
-    font-size: 19px;
-    z-index: 5;
-    transition: opacity .5s;
-}
-
-.envelope.open .flap {
+.envelope.open::before {
     transform: rotateX(180deg);
 }
 
-.envelope.open .seal {
-    opacity: 0;
+.envelope.open {
+    animation: envelopeMove 1s ease;
 }
 
-/* BUTTON */
-
-button {
-    margin-top: 25px;
-    padding: 13px 35px;
-    border: none;
+.open-btn {
+    border: 1px solid #bd8e89;
+    background: #fff8f3;
+    color: #8c6260;
+    padding: 13px 30px;
     border-radius: 30px;
-    background: #b77f85;
-    color: white;
     font-family: Georgia, serif;
     font-size: 14px;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
 }
 
-button:hover {
-    background: #98636b;
-    transform: translateY(-2px);
+.open-btn:hover {
+    background: #d9aaa5;
+    color: white;
 }
 
-button:disabled {
-    opacity: .7;
-    cursor: default;
+.hint {
+    font-size: 12px;
+    color: #a77b78;
+    margin-top: 22px;
+    letter-spacing: 1px;
 }
-
-/* LETTER */
 
 #letterScreen {
-    display: none;
-    padding: 35px 18px;
+    align-items: flex-start;
+    padding: 35px 15px;
 }
 
 .paper {
-    max-width: 650px;
     width: 100%;
-    margin: auto;
-    background: #fffaf3;
-    padding: 35px 27px;
-    border-radius: 5px;
-    box-shadow: 0 10px 35px #8e626222;
-    border: 1px solid #eadbd0;
-    opacity: 0;
-    transform: translateY(35px);
-}
-
-.paper.show {
-    animation: paperAppear 1.3s ease forwards;
-}
-
-@keyframes paperAppear {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    max-width: 680px;
+    background: #fffaf4;
+    padding: 38px 28px;
+    border-radius: 8px;
+    box-shadow: 0 10px 35px #9c777733;
+    animation: paperReveal 1.2s ease;
+    line-height: 1.9;
 }
 
 .letter-title {
-    text-align: left;
-    font-size: 27px;
+    text-align: center;
+    font-size: 28px;
     font-weight: normal;
-    font-style: italic;
-    color: #986b70;
-    margin-bottom: 8px;
+    color: #9b6d6a;
+    margin: 0 0 10px;
 }
 
 .date-text {
-    text-align: left;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #b28e8c;
-    margin-bottom: 30px;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #b58d88;
+    margin-bottom: 35px;
 }
 
 #letterText {
     white-space: pre-wrap;
     font-size: 15px;
-    line-height: 1.9;
-    color: #705657;
-    min-height: 200px;
-    overflow-wrap: break-word;
-}
-
-#musicFallback {
-    display: none;
-    text-align: center;
-    font-size: 12px;
-    color: #a16e77;
-    margin-top: 20px;
-    cursor: pointer;
+    line-height: 2;
+    color: #684f4d;
+    text-align: left;
 }
 
 .signature {
+    opacity: 0;
     text-align: right;
-    margin-top: 30px;
+    margin-top: 35px;
+    color: #9b6d6a;
     font-style: italic;
     line-height: 1.8;
-    color: #a16e77;
-    opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 2s ease;
 }
 
 .signature.show {
     opacity: 1;
 }
 
-/* FLOATING HEARTS */
+.music-note {
+    text-align: center;
+    font-size: 11px;
+    color: #b58d88;
+    margin-top: 30px;
+}
+
+.music-btn {
+    display: block;
+    margin: 15px auto 0;
+    background: transparent;
+    border: 1px solid #bd8e89;
+    color: #9b6d6a;
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+}
 
 .heart {
     position: fixed;
-    bottom: -30px;
-    color: #c58d96;
-    opacity: .55;
-    animation: floatUp 7s linear forwards;
+    bottom: -20px;
+    color: #d99a9b;
     pointer-events: none;
+    animation: floatHeart 6s linear forwards;
     z-index: 10;
 }
 
-@keyframes floatUp {
-    to {
-        transform: translateY(-110vh) rotate(30deg);
-        opacity: 0;
-    }
-}
-
 @keyframes fadeIn {
-    from {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes paperReveal {
+    from { opacity: 0; transform: translateY(35px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes envelopeMove {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg);
         opacity: 0;
-        transform: translateY(15px);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    15% { opacity: 0.8; }
+    100% {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0;
     }
 }
 
-@media(max-width: 480px) {
+@media (max-width: 480px) {
     .paper {
-        padding: 28px 21px;
+        padding: 30px 20px;
     }
 
     #letterText {
         font-size: 14px;
+        line-height: 1.9;
+    }
+
+    .envelope {
+        width: 250px;
+    }
+
+    .envelope::before {
+        border-left-width: 125px;
+        border-right-width: 125px;
     }
 }
 </style>
@@ -273,42 +247,22 @@ button:disabled {
 
 <body>
 
-<!-- FIRST SCREEN -->
-
 <section class="screen" id="nameScreen">
+    <div class="envelope-container">
+        <div class="small-title">A LETTER FROM MY HEART</div>
 
-    <div class="card">
+        <div class="envelope" id="envelope"></div>
 
-        <div class="small-text">a little something for you</div>
-
-        <h1>You Have a Letter</h1>
-
-        <p class="subtitle">
-            Some words have been waiting to be read.
-        </p>
-
-        <div class="envelope-area">
-            <div class="envelope" id="envelope">
-                <div class="flap"></div>
-                <div class="seal">♡</div>
-            </div>
-        </div>
-
-        <button type="button" id="openButton">
+        <button class="open-btn" id="openBtn">
             Open Letter ♡
         </button>
 
+        <div class="hint">a little something for you</div>
     </div>
-
 </section>
 
-
-<!-- LETTER SCREEN -->
-
-<section class="screen" id="letterScreen">
-
-    <div class="paper" id="paper">
-
+<section class="screen hidden" id="letterScreen">
+    <div class="paper">
         <h2 class="letter-title">Dear Zaira,</h2>
 
         <div class="date-text">
@@ -317,96 +271,69 @@ button:disabled {
 
         <div id="letterText"></div>
 
-        <div id="musicFallback">
-            The music didn't start? Tap here to play ♫
-        </div>
-
         <div class="signature" id="signature">
             with a grateful heart,<br>
             bryan ♡
         </div>
 
-    </div>
+        <div class="music-note">
+            ♡ a little song to accompany this letter ♡
+        </div>
 
+        <button class="music-btn" id="musicBtn">
+            Play Music ♡
+        </button>
+    </div>
 </section>
 
-
-<!-- BACKGROUND MUSIC -->
-
-<audio
-    id="music"
-    src="./it-might-be-you-instrumental.mp3"
-    preload="auto"
-    loop>
+<audio id="music"
+       src="./it-might-be-you-instrumental.mp3"
+       preload="auto"
+       loop>
 </audio>
 
-
 <script>
+const confession = `hiii sayyyy, naa unta koy gusto isulti nimo nga dugayyyy na gyud nako gusto i-share, pero wala lang gyud ko kakita og sakto nga time ug courage para finally masulti ni nako. since grade 6 pa ta, i've had feelings for you. sauna, abi nako simple crush ra ni nga mawala ra kadugayan. i thought it was just a normal feeling nga maagian ra nako while growing up. pero as time passed, na-realize nako nga wala diay gyud siya basta-basta nawala. daghan na kaayog nausab, daghan na kaayog nahitabo, and we've both grown into different people, pero somehow, naa gihapon ni nga feelings. kabalo ko nga dili na ta parehas sauna. dili na ta pirmi mag-uban, mag-istorya, or magkita sama sa una. karon, panagsa na lang ta magtagbo, usahay simple hi na lang gyud atong ma-share sa usag usa. pero bisag ing-ana, malipay gihapon ko nga makita ka. sometimes, i find it amazing how things have changed. sauna, mas daghan pa ta og chances nga magkauban ug mag-istorya, pero karon panagsa na lang ta magkita. even so, wala gihapon nausab kung unsa ka ka-important sa ako. naa pud mga times nga ganahan unta ko makig-istorya nimo, pero magduha-duha ko. usahay maglikay ko or murag dili tika tagdon, dili tungod kay dili ko ganahan makig-istorya nimo, but because i just feel awkward and wala ko kabalo unsaon pag-act around you. sometimes, i don't even know what to say or how to start a conversation. i'm sorry kung naa koy mga moments nga murag distant ko. i never meant to make you feel nga dili ko ganahan makig-istorya nimo. gusto pud ko magpasalamat sa mga little things nga imong nabuhat para nako. labi na tong mga times nga gina-librehan ko nimo, our simple conversations, ug mga moments nga basin ordinary ra para nimo pero memorable kaayo para nako. basin dili na nimo mahinumduman tanan, pero ako, naa gihapon sa akong huna-huna. sometimes, we don't need grand gestures to appreciate someone. even the smallest things can leave memories that stay with us for a long time. and there's something i want you to know. i see every version of you. dili lang katong ikaw sauna nga akong nailhan, but also the person you are today and the person you're still becoming. kabalo ko nga daghan na kaayog nausab sa ato, and i may not know everything that's happening in your life anymore, pero i still appreciate seeing you grow. even from afar, i'm happy knowing that you're moving forward, discovering yourself, and making your own memories. dili nako ni gisulti kay nag-expect ko nga parehas ta og feelings. i'm not asking you to answer me right away or feel the same way i do. gusto lang gyud nako nga mahibaw-an nimo, kay dugay na kaayo ni nako gitago. i've reached a point where i'd rather be honest than keep wondering what could have happened if i had told you sooner. i hope nga dili ni makapa-awkward sa ato or mausab ang friendship nga naa ta. dili nako gusto nga tungod lang ani nga letter, mawala or mausab ang mga memories nga naa ta. whatever your feelings may be, i'll respect them. kung dili man parehas imong gibati, okay ra gyud. i won't force you to feel something that isn't there. i just want you to be honest with yourself, just as i'm trying to be honest with you. and lastly, i'm really grateful nga nahimo tika nga best friend. thankful ko sa tanan natong memories, sa mga katawa, sa mga simple nga moments, ug sa chance nga nakaila ko nimo. if there's one thing i'll always be thankful for, it's having a front-row seat to your life, seeing you grow and go through different chapters of your story. basin dili ko pirmi naa sa imong kilid sama sauna, pero i'm still grateful nga naa koy chance nga mahimong part sa pipila ka moments sa imong life. basin dili na gyud ta mahimong parehas sauna. maybe someday, we'll meet more people, take different paths, and make memories of our own. pero i hope you never forget nga there was a time in my life when you were one of the people i valued the most. someone i genuinely appreciated, even during the times nga wala nako gipakita. wala ko kahibalo unsay mahitabo after ani, and i don't want to assume what the outcome will be. pero usa ra gyud akong sure, dili gyud nako magmahay nga nakaila ko nimo, nga nahimo tika nga friend, ug nga naka-feel ko ani para nimo. because whatever happens, i'm glad that it was you. i hope pud nga diri ra unta ni kutob sa ato. this is something personal to me, and it wasn't easy putting all of these feelings into words. it would mean a lot to me if kita ra unta ang makahibalo ani. mao ra to, sayyyy. wala koy laing tuyo ani kundi ang mahimong honest nimo. dugay na nako ni gitago, and karon gusto lang gyud nako nga mahibaw-an nimo kung unsa ka ka-important sa ako. thank you for being part of my story. and i hope nga bisag unsa pa ang mahitabo, you know that i'll always have a genuine appreciation for you.`;
 
-// COMPLETE CONFESSION
-
-const confession = `hiii sayyyy, naa unta koy gusto isulti nimo nga dugayyyy na gyud nako gusto i-share, pero wala lang gyud ko nakakita og sakto nga time ug courage para isulti ni. since g6 pa ta, i've had feelings for you. sauna, abi nako simple crush ra ni nga mawala ra kadugayan, pero as time passed, i realized nga wala diay siya nawala. daghan na kaayog nausab over the years, and we're not as close as we used to be, pero naa gihapon akong feelings para nimo. i know we have our own lives now, our own responsibilities, and we're slowly growing into different versions of ourselves, but that doesn't change how much i appreciate having you in my life. if ever naka-notice ka nga usahay murag wala tika tagda or maglikay ko nimo, i'm really sorry about that. dili gyud to tungod kay dili ko ganahan makig-istorya nimo. usahay ma-awkward lang gyud ko kay dili ko kabalo unsaon pag-act around you, especially knowing nga naa koy feelings para nimo. there were times nga gusto unta ko makig-istorya nimo, pero wala ko kabalo unsay isulti. i hope wala nimo na-misunderstood akong actions towards nimo. i also want to thank you for the little things you've done for me, especially sa mga times nga gina-librehan ko nimo and sa mga moments nga magkauban ta. basin simple ra to para nimo, but those little things mean more to me than you probably realize. there are moments nga basin nalimtan na nimo, pero ako, i still remember them. sometimes, the simplest moments become the memories we appreciate the most. honestly, dugay na kaayo ni nako gusto isulti, pero karon pa gyud ko nakakuha og courage. i'm not telling you this because i'm expecting something in return. dili pud ko nangayo nga you should feel the same way or give me an answer right away. gusto lang gyud nako nga ma-express akong feelings nga dugay na nako gitago. i hope nga dili ka ma-pressure after nimo mabasa ni, and i hope nga dili pud ni mahimong reason para ma-awkward ta sa usag usa. i still value our friendship, and i don't want you to feel nga kinahanglan naay mausab tungod lang kay ni-open up ko nimo. if you don't feel the same way, that's okay. i'll respect your feelings, and i understand if you need time or space. i want you to know that i see every version of you. the happy one, the quiet one, the strong one, and even the versions of yourself that you don't always show to other people. you don't have to be the same person every day just to be appreciated. you don't have to be perfect or pretend to be someone else. whatever version of yourself you become, i'm glad i got the chance to know you. i never regretted meeting you, and even though time has changed a lot of things between us, i'm still thankful for all the memories we've shared. and lastly, i'm genuinely grateful that i have a best friend like you. i'm grateful that i got a front row seat to your life, your growth, and all the little moments that make you who you are. getting to know you and being part of some of your memories is something i'll always appreciate. maybe someday we'll look back at these years and realize how much we've grown, but no matter where life takes us, i'll always be thankful that our paths crossed and that i got the chance to call you my best friend. whatever happens after this, i hope you know that i genuinely appreciate you. that's all. i just wanted to be honest with you, finally. also, i hope nga this stays between us lang. personal kaayo ni para nako, and it would really mean a lot to me if kita ra unta ang makahibalo ani. <3`;
-
-
-// ELEMENTS
-
-const openButton = document.getElementById("openButton");
+const nameScreen = document.getElementById("nameScreen");
+const letterScreen = document.getElementById("letterScreen");
 const envelope = document.getElementById("envelope");
-const music = document.getElementById("music");
-const fallback = document.getElementById("musicFallback");
+const openBtn = document.getElementById("openBtn");
+const letterText = document.getElementById("letterText");
 const signature = document.getElementById("signature");
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
 
+let typingStarted = false;
+let musicStarted = false;
 
-// OPEN LETTER
-
-openButton.addEventListener("click", function() {
-
-    openButton.disabled = true;
-
-    music.volume = 0.45;
-
-    music.play().catch(() => {
-        fallback.style.display = "block";
-    });
-
+openBtn.addEventListener("click", () => {
     envelope.classList.add("open");
 
+    music.play().then(() => {
+        musicStarted = true;
+        musicBtn.textContent = "Pause Music ♡";
+    }).catch(() => {
+        musicBtn.textContent = "Play Music ♡";
+    });
+
     setTimeout(() => {
+        nameScreen.classList.add("hidden");
+        letterScreen.classList.remove("hidden");
 
-        document.getElementById("nameScreen").style.display = "none";
-
-        const letterScreen =
-            document.getElementById("letterScreen");
-
-        letterScreen.style.display = "flex";
-
-        setTimeout(() => {
-
-            document.getElementById("paper").classList.add("show");
-
+        if (!typingStarted) {
+            typingStarted = true;
             startTyping();
-
-        }, 300);
-
-    }, 1100);
-
+        }
+    }, 900);
 });
 
-
-// TYPEWRITER EFFECT
-
 function startTyping() {
-
-    const target = document.getElementById("letterText");
-
     let index = 0;
 
     function type() {
-
         if (index < confession.length) {
-
-            target.textContent += confession.charAt(index);
-
+            letterText.textContent += confession.charAt(index);
             index++;
 
             window.scrollTo({
@@ -415,63 +342,44 @@ function startTyping() {
             });
 
             setTimeout(type, 22);
-
         } else {
-
             signature.classList.add("show");
-
         }
-
     }
 
     type();
-
 }
 
-
-// MUSIC FALLBACK
-
-fallback.addEventListener("click", function() {
-
-    music.play().then(() => {
-
-        fallback.style.display = "none";
-
-    }).catch(() => {
-
-        fallback.textContent =
-            "Please try tapping again ♡";
-
-    });
-
+musicBtn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play().then(() => {
+            musicBtn.textContent = "Pause Music ♡";
+        }).catch(() => {
+            musicBtn.textContent = "Play Music ♡";
+        });
+    } else {
+        music.pause();
+        musicBtn.textContent = "Play Music ♡";
+    }
 });
 
-
-// FLOATING HEARTS
-
 function createHeart() {
-
     const heart = document.createElement("div");
-
     heart.className = "heart";
-
-    heart.textContent = "♡";
+    heart.textContent = Math.random() > 0.5 ? "♡" : "♥";
 
     heart.style.left = Math.random() * 100 + "vw";
-
-    heart.style.fontSize =
-        (12 + Math.random() * 18) + "px";
+    heart.style.fontSize = (12 + Math.random() * 15) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
 
     document.body.appendChild(heart);
 
     setTimeout(() => {
         heart.remove();
-    }, 7000);
-
+    }, 8000);
 }
 
 setInterval(createHeart, 1000);
-
 </script>
 
 </body>
